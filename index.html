@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZONA GAMER - Plantilla Web para Locales</title>
+    
+    <script src="datos_editables.js"></script> 
+    
+    <style>
+        /* ========================================================= */
+        /* ESTILOS Y DISEÑO */
+        /* ========================================================= */
+        :root {
+            --color-fondo-principal: #161a2b; 
+            --color-fondo-secundario: #252b45; 
+            --color-resalte: #ff3a8d; 
+            --color-acento: #3afff0; 
+            --color-texto: #e5e5e5; 
+            --fuente-gamer: 'Arial', sans-serif; 
+        }
+        body {
+            font-family: var(--fuente-gamer);
+            background-color: var(--color-fondo-principal);
+            color: var(--color-texto);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        .header {
+            background-color: #0c0f1c;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            border-bottom: 2px solid var(--color-acento);
+        }
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: var(--color-resalte);
+            text-shadow: 0 0 3px var(--color-resalte);
+            cursor: pointer; 
+        }
+        .nav-menu a {
+            color: var(--color-texto);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 1.1em;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            border: 1px solid transparent;
+        }
+        .nav-menu a:hover {
+            color: var(--color-acento);
+            background-color: rgba(58, 141, 255, 0.1);
+            border: 1px solid var(--color-acento);
+            text-shadow: 0 0 2px var(--color-acento);
+        }
+        .section {
+            padding: 80px 50px;
+            min-height: 90vh;
+            border-bottom: 1px solid var(--color-fondo-secundario);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .section h2 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--color-resalte);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            padding-bottom: 10px;
+            display: block;
+            width: auto;
+            border-bottom: 3px solid var(--color-acento);
+        }
+        #inicio {
+            min-height: 100vh;
+            justify-content: center;
+            text-align: center;
+            /* CAMBIAR ESTA LÍNEA por la ruta de tu imagen de fondo real */
+            background: linear-gradient(rgba(22, 26, 43, 0.85), rgba(22, 26, 43, 0.85)), url('img/fondo_gamer.jpg') no-repeat center center;
+            background-size: cover;
+        }
+        #inicio h1 {
+            font-size: 3.5em;
+            color: var(--color-acento);
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px var(--color-acento), 0 0 20px rgba(58, 255, 240, 0.5);
+            font-weight: 900;
+        }
+        #servicios .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        #servicios .servicio-item {
+            background-color: var(--color-fondo-secundario);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        #servicios .servicio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px var(--color-resalte);
+            border: 2px solid var(--color-resalte);
+        }
+        #servicios .servicio-item h3 {
+            font-size: 1.5em;
+            color: var(--color-acento);
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+        #servicios .servicio-item .emoji {
+            font-size: 4em;
+            display: block;
+            margin-bottom: 10px;
+        }
+        #tarifas table {
+            width: 80%;
+            max-width: 900px;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        }
+        #tarifas th, #tarifas td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--color-fondo-secundario);
+        }
+        #tarifas th {
+            background-color: var(--color-resalte);
+            color: var(--color-fondo-principal);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        #tarifas tr:nth-child(even) {
+            background-color: #1a1e30;
+        }
+        #tarifas tr:hover {
+            background-color: #353b5e;
+            transition: background-color 0.3s;
+        }
+        .highlighted-row {
+            background-color: #00ffc7 !important; 
+            color: var(--color-fondo-principal) !important;
+            font-weight: bold;
+            box-shadow: 0 0 10px var(--color-acento);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        #reseñas .reseñas-container {
+            width: 80%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        #reseñas .formulario-reseña textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--color-fondo-secundario);
+            color: var(--color-texto);
+            resize: vertical;
+            min-height: 100px;
+            font-family: var(--fuente-gamer);
+        }
+        #reseñas .formulario-reseña button {
+            background-color: var(--color-resalte);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        #reseñas .formulario-reseña button:hover {
+            background-color: #d13076;
+            transform: scale(1.05);
+        }
+        #reseñas .lista-reseñas {
+            padding: 20px;
+            background-color: var(--color-fondo-secundario);
+            border-radius: 10px;
+            border: 1px solid var(--color-acento);
+        }
+        .reseña-placeholder {
+            border-bottom: 1px dashed var(--color-resalte);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        #reservaciones {
+            text-align: center;
+        }
+        #reservaciones p {
+            font-size: 1.2em;
+            color: var(--color-texto);
+            margin-bottom: 40px;
+        }
+        #reservaciones .qr-code {
+            border: 8px solid var(--color-resalte);
+            border-radius: 10px;
+            display: inline-block;
+            transition: box-shadow 0.3s;
+        }
+        #reservaciones .qr-code:hover {
+             box-shadow: 0 0 20px var(--color-acento);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo" id="site-logo">ZONA GAMER</div>
+        <nav class="nav-menu">
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#tarifas">Tarifas</a>
+            <a href="#reseñas">Reseñas</a>
+            <a href="#reservaciones">Reservaciones</a>
+        </nav>
+    </header>
+
+    <section id="inicio" class="section">
+        <h1 id="inicio-title"></h1>
+        <p style="font-size: 1.5em; max-width: 600px; color: var(--color-resalte);">Tu centro de alquiler de equipos de alto rendimiento. ¡Prepárate para la acción!</p>
+    </section>
+    
+    <section id="servicios" class="section">
+        <h2>NUESTROS SERVICIOS</h2>
+        <div class="servicios-grid" id="servicios-grid-container">
+            </div>
+        <p style="margin-top: 50px; color: var(--color-acento);">Haz clic en el equipo para ver sus tarifas detalladas.</p>
+    </section>
+
+    <section id="tarifas" class="section">
+        <h2>TARIFAS DE ALQUILER</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Equipo</th>
+                    <th>Alquiler por Hora</th>
+                    <th>Alquiler por Día</th>
+                </tr>
+            </thead>
+            <tbody id="tarifas-body">
+                </tbody>
+        </table>
+    </section>
+
+    <section id="reseñas" class="section">
+        <h2>DEJA TU RESEÑA</h2>
+        <div class="reseñas-container">
+            <p style="text-align: center; color: var(--color-resalte); border: 1px solid; padding: 10px; border-radius: 5px;">
+                ⚠️ **ATENCIÓN:** Este formulario es solo visual. La función de guardado NO está implementada.
+            </p>
+            
+            <div class="formulario-reseña">
+                <textarea placeholder="Escribe tu reseña aquí..."></textarea>
+                <button onclick="alert('Funcionalidad de guardado NO implementada. Necesita backend/servidor.');">Enviar Reseña</button>
+            </div>
+            
+            <div class="lista-reseñas">
+                <h3>Reseñas Recientes (Ejemplo)</h3>
+                <div id="reseña-1" class="reseña-placeholder"></div>
+                <div id="reseña-2" class="reseña-placeholder"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reservaciones" class="section">
+        <h2>RESERVACIONES VÍA WHATSAPP</h2>
+        <p>Escanea el Código QR y reserva tu equipo al instante. ¡Rápido y sin llamadas!</p>
+        
+        <a id="qr-link" href="#" target="_blank" class="qr-code">
+            <img src="img/qr.png.png" width="300" height="300">
+        </a>
+        
+        <p style="margin-top: 20px; font-size: 0.9em; color: gray;"></p>
+    </section>
+
+    
+    <script>
+        // =========================================================
+        // VALORES ORIGINALES INMUTABLES (GUARDADOS PARA EL RESET SECRETO)
+        // =========================================================
+        const ORIGINAL_DEFAULT_TITLE = 'BIENVENIDOS A LA ZONA GAMER';
+        
+        const ORIGINAL_DEFAULT_SERVICIOS = [
+            { id: 'xbox360', nombre: 'Xbox 360', emoji: '🕹️', descripcion: 'La leyenda sigue viva. Clásicos y diversión retro garantizada.' },
+            { id: 'ps5', nombre: 'PlayStation 5', emoji: '🎮', descripcion: 'Máximo rendimiento, 4K y la velocidad de la nueva generación.' },
+            { id: 'simulador', nombre: 'Simulador', emoji: '🏎️', descripcion: 'Siente la adrenalina. Experiencia de carreras y vuelo inmersiva.' },
+            { id: 'pcgamer', nombre: 'PC Gamer', emoji: '💻', descripcion: 'Potencia sin límites. Los mejores títulos con gráficos ultra.' },
+        ];
+        
+        const ORIGINAL_DEFAULT_TARIFAS = [
+            { id: 'xbox360', nombre: 'Xbox 360', hora: 'COP 3.000', dia: 'COP 25.000' },
+            { id: 'ps5', nombre: 'PlayStation 5', hora: 'COP 7.000', dia: 'COP 55.000' },
+            { id: 'simulador', nombre: 'Simulador', hora: 'COP 12.000', dia: 'COP 90.000' },
+            { id: 'pcgamer', nombre: 'PC Gamer', hora: 'COP 8.000', dia: 'COP 60.000' },
+        ];
+
+
+        // Función principal que se ejecuta para cargar (o recargar) el contenido.
+        function cargarContenido(
+            data = datos_servicios, 
+            tarifas = datos_tarifas, 
+            titulo = titulo_inicio, 
+            reseña1 = reseña_1, 
+            reseña2 = reseña_2, 
+            qr = qr_whatsapp_link
+        ) {
+            // 1. Cargar Título de Inicio
+            document.getElementById('inicio-title').textContent = titulo;
+
+            // 2. Cargar Servicios
+            const serviciosContainer = document.getElementById('servicios-grid-container');
+            serviciosContainer.innerHTML = '';
+            data.forEach(item => {
+                const html = `
+                    <div class="servicio-item" onclick="highlightTariff('${item.id}')">
+                        <span class="emoji">${item.emoji}</span>
+                        <h3>${item.nombre}</h3>
+                        <p>${item.descripcion}</p>
+                    </div>
+                `;
+                serviciosContainer.innerHTML += html;
+            });
+
+            // 3. Cargar Tarifas (Asegura el ID para el resalte)
+            const tarifasBody = document.getElementById('tarifas-body');
+            tarifasBody.innerHTML = '';
+            tarifas.forEach(item => {
+                const html = `
+                    <tr id="row-${item.id}">  
+                        <td>${item.nombre}</td>
+                        <td data-default="${item.hora}">${item.hora}</td>
+                        <td data-default="${item.dia}">${item.dia}</td>
+                    </tr>
+                `;
+                tarifasBody.innerHTML += html;
+            });
+            
+            // 4. Cargar Reseñas (ejemplo)
+            document.getElementById('reseña-1').innerHTML = `<p><strong>Cliente 1:</strong> "${reseña1.texto}"</p><small>${reseña1.estrellas}</small>`;
+            document.getElementById('reseña-2').innerHTML = `<p><strong>Cliente 2:</strong> "${reseña2.texto}"</p><small>${reseña2.estrellas}</small>`;
+            
+            // 5. Cargar Link QR
+            document.getElementById('qr-link').href = qr;
+        }
+
+
+        // Funcionalidad de Resalte
+        function highlightTariff(id) {
+            document.getElementById('tarifas').scrollIntoView();
+            document.querySelectorAll('#tarifas tr').forEach(row => {
+                row.classList.remove('highlighted-row');
+            });
+
+            const targetRow = document.getElementById('row-' + id);
+            if (targetRow) {
+                targetRow.classList.add('highlighted-row');
+                setTimeout(() => {
+                    targetRow.classList.remove('highlighted-row');
+                }, 5000);
+            }
+        }
+
+        // =========================================================
+        // FUNCIÓN DEL SEGUNDO OBJETIVO: REINICIO DE LA PLANTILLA (5 CLICKS)
+        // =========================================================
+        let clickCount = 0;
+        const resetThreshold = 5; 
+        
+        // El logo escucha los clics para el reset
+        document.getElementById('site-logo').addEventListener('click', () => {
+            clickCount++;
+            
+            if (clickCount >= resetThreshold) {
+                // Se pasa el contenido ORIGINAL para forzar el reset
+                cargarContenido(
+                    ORIGINAL_DEFAULT_SERVICIOS,
+                    ORIGINAL_DEFAULT_TARIFAS,
+                    ORIGINAL_DEFAULT_TITLE,
+                    reseña_1, 
+                    reseña_2, 
+                    qr_whatsapp_link
+                );
+                clickCount = 0; 
+                alert("✅ REINICIO EXITOSO: Contenido de texto y tarifas restaurados a los valores predeterminados (ZONA GAMER).");
+            } else {
+                setTimeout(() => {
+                    clickCount = 0;
+                }, 2000); 
+            }
+        });
+        
+        // =========================================================
+        // LLAMADA DE INICIO AUTOMÁTICA
+        // =========================================================
+        cargarContenido(); 
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+============================================================
+              GUÍA RÁPIDA DE MODIFICACIÓN WEB
+============================================================
+
+### 1. 📂 ARCHIVO QUE DEBE EDITAR
+
+* **Solo debe modificar un archivo:** `datos_editables.js`
+* **NO toque ni abra:** `index.html` (Contiene el diseño y la lógica secreta).
+
+---
+### 2. ✏️ CÓMO MODIFICAR EL CONTENIDO
+
+Abra el archivo `datos_editables.js` con un editor de texto (como el Bloc de Notas o VS Code).
+
+**REGLA DE ORO:** Modifique **SOLO el texto que está DENTRO DE LAS COMILLAS (" ").**
+
+* **Para AGREGAR/QUITAR servicios:** Copie o borre bloques completos de texto entre llaves `{...}` en las secciones "SERVICIOS" y "TARIFAS". Asegúrese de que el valor `id: '...'` sea el mismo en ambos bloques.
+* **Para cambiar Título:** Modifique `const titulo_inicio = "..."`
+* **Para cambiar Precios:** Modifique `"COP 7.000"` o `"COP 55.000"`
+* **Para cambiar WhatsApp:** Pegue su enlace de WhatsApp Business en `qr_whatsapp_link = "..."`
+
+---
+### 3. 🔄 FUNCIÓN SECRETA DE REINICIO (¡IMPORTANTE!)
+
+El botón de reinicio es una herramienta de **DIAGNÓSTICO** para ver la página como venía de fábrica.
+
+1.  **¿Cómo se usa?** Haga **5 clics rápidos y seguidos** en el logo **"ZONA GAMER"** en la esquina superior izquierda.
+2.  **Resultado en Pantalla:** La página vuelve a mostrar los 4 servicios y el título original.
+
+**⚠️ DESHACER CAMBIOS PERMANENTEMENTE:**
+
+Si usted desea **eliminar** los cambios que guardó en `datos_editables.js` y **volver permanentemente** a la configuración de fábrica:
+
+1.  Use el reinicio de 5 clics para ver la configuración original en pantalla.
+2.  **ABRA** el archivo `datos_editables.js`.
+3.  **BORRE** el contenido modificado (servicios, tarifas, etc.) que había agregado.
+4.  **GUARDE** `datos_editables.js`.
+
+**El botón no puede borrar archivos por usted por motivos de seguridad web.**
+============================================================
