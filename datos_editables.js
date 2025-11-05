@@ -89,4 +89,10 @@ const reseña_1 = {
 const reseña_2 = { 
     texto: "Probé el simulador de carreras y fue muy realista. Gran experiencia.", 
     estrellas: '⭐ 4 estrellas' 
+
+};
+const reseña_2 = { 
+    texto: "Probé el simulador de carreras y fue muy realista. Gran experiencia.", 
+    estrellas: '⭐ 4 estrellas' 
+
 };
